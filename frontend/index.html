@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PhishBuster — Advanced Behavioral Demo</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+  <div>
+    <h1 style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+      🛡️ PhishBuster
+    </h1>
+    <p class="lead">Advanced phishing detector with behavioral and content analytics</p>
+  </div>
+</header>
+
+
+    <!-- Status Section -->
+    <div class="status-card" id="statusCard">
+      <div class="status-pill" id="statusPill">No analysis yet</div>
+      <div class="status-text">
+        <div id="statusMain">Provide email content and click <strong>Analyze</strong>.</div>
+        <div class="confidence-bar"><div class="confidence-fill" id="confidenceFill"></div></div>
+        <div class="muted" id="confidenceText">Confidence: —</div>
+      </div>
+      <div class="status-time">
+        <div class="muted">Last checked</div>
+        <div id="lastChecked" class="muted">—</div>
+      </div>
+    </div>
+
+    <!-- Input Section -->
+    <div class="card">
+      <label for="subject">Subject (optional)</label>
+      <input type="text" id="subject" placeholder="Subject (optional)" />
+      <label for="body" style="margin-top:12px">Full email body</label>
+      <textarea id="body" placeholder="Paste the full email content here..."></textarea>
+
+      <div class="controls">
+        <button id="analyzeBtn">🔍 Analyze</button>
+        <button class="secondary" id="sampleBtn">✅ Safe Sample</button>
+        <button class="secondary" id="sampleSuspiciousBtn">⚠️ Suspicious Sample</button>
+        <button class="secondary" id="samplePhishBtn">🚨 Phishing Sample</button>
+        
+        <div style="flex:1"></div>
+        <div class="muted" id="apiStatus">API: Unknown</div>
+      </div>
+    </div>
+
+    <!-- ✅ Comprehensive Analysis Section -->
+    <div class="card" id="behavioralCard" style="display:none;">
+      <h3>Behavioral and Content Analysis</h3>
+      <p class="muted">Detailed behavioral, linguistic, and technical parameters extracted from the email.</p>
+
+      <table id="behavioralTable" class="behavior-table">
+        <thead>
+          <tr><th>Parameter</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sender Reputation</td><td id="senderReputation">—</td></tr>
+          <tr><td>Domain Trust Score</td><td id="domainTrust">—</td></tr>
+          <tr><td>URL Count / Malicious URLs</td><td id="urlCount">—</td></tr>
+          <tr><td>Urgency or Threat Tone</td><td id="urgencyTone">—</td></tr>
+          <tr><td>Financial or Credential Request</td><td id="sensitiveRequest">—</td></tr>
+          <tr><td>Suspicious Keyword Density</td><td id="keywordDensity">—</td></tr>
+          <tr><td>Language Consistency (Grammar & Tone)</td><td id="languageScore">—</td></tr>
+          <tr><td>Embedded Links Mismatch</td><td id="linkMismatch">—</td></tr>
+          <tr><td>Attachment Risk Level</td><td id="attachmentRisk">—</td></tr>
+          <tr><td>Phishing Risk Index (Overall)</td><td id="phishRisk">—</td></tr>
+        </tbody>
+      </table>
+
+      <!-- ✅ Summary Section -->
+      <div id="analysisSummaryBox" class="analysis-summary-box" style="display:none;">
+        <h4>Mail Analysis Summary</h4>
+        <p id="analysisSummaryText" class="muted">
+          The analyzed email shows balanced structure with moderate risk factors. 
+          Detailed metrics above indicate the likelihood of phishing based on linguistic, technical, and behavioral patterns.
+        </p>
+      </div>
+    </div>
+
+    <!-- ✅ History Section -->
+    <div class="card">
+      <h3>Recent Analyses</h3>
+      <div class="history" id="history"></div>
+    </div>
+
+    <!-- ✅ Project Credit Section -->
+    <footer style="margin-top: 30px; text-align: center; font-size: 0.95rem; color: #666;">
+      Project by <strong>Ananda Sri Kaushal B</strong>, <strong>Vraj Govani</strong>, and <strong>Madhur Toshniwal</strong> under the guidance of <strong>Prof. Chandru Vignesh C</strong>.
+    </footer>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>

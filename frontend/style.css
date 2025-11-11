@@ -1,0 +1,337 @@
+/* === PhishBuster Neon Interface (Updated) === */
+:root {
+  --bg1: #0a0f2c;
+  --bg2: #121c44;
+  --card: rgba(255, 255, 255, 0.08);
+  --muted: #a3b8ff;
+  --accent: #00f5ff;
+  --accent2: #7b61ff;
+  --danger: #ff3b6e;
+  --warning: #ffc857;
+  --safe: #4ade80;
+  --glow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at 20% 20%, var(--bg2), var(--bg1));
+  color: white;
+  overflow-x: hidden;
+}
+
+/* ==== Container ==== */
+.container {
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 20px;
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==== Header ==== */
+.header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+h1 {
+  font-size: 2.4rem;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+  letter-spacing: 1px;
+}
+
+.lead {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+/* ==== Status Card ==== */
+.status-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 15px rgba(0,255,255,0.05);
+  border-radius: 18px;
+  padding: 20px;
+  backdrop-filter: blur(8px);
+  transition: all 0.4s ease;
+}
+
+.status-card:hover {
+  box-shadow: 0 0 25px rgba(0,255,255,0.3);
+}
+
+.status-pill {
+  padding: 12px 20px;
+  border-radius: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: white;
+  min-width: 140px;
+  text-align: center;
+  background: linear-gradient(90deg, #3a3a3a, #202020);
+  box-shadow: var(--glow);
+  transition: all 0.3s ease;
+}
+
+.status-pill.blink {
+  animation: pulse 1s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+/* ==== Confidence Bar ==== */
+.confidence-bar {
+  background: rgba(255,255,255,0.08);
+  height: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.confidence-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 10px rgba(0,255,255,0.4);
+  transition: width 0.8s ease;
+}
+
+/* ==== Card ==== */
+.card {
+  background: var(--card);
+  padding: 65px;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(0,255,255,0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* ==== Input & Textarea ==== */
+label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 10px 0 8px;
+}
+
+input[type=text], textarea {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.3);
+  color: #e0e0ff;
+  padding: 12px 14px;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+input[type=text]:focus, textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px rgba(0,255,255,0.3);
+}
+
+textarea {
+  min-height: 400px;
+  max-height: 70vh;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+/* ==== Buttons ==== */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+button {
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  color: #0a0f2c;
+  border: none;
+  font-weight: bold;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+button.secondary {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--muted);
+}
+
+button.secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ==== History ==== */
+.history {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.history::-webkit-scrollbar {
+  width: 6px;
+}
+.history::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+  border-radius: 4px;
+}
+
+.history-item {
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 0 10px rgba(0,255,255,0.1);
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.history-item:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.08);
+}
+
+/* ===== Behavioral Table (Enhanced) ===== */
+.behavior-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  color: #e0f7fa;
+  border: 1px solid rgba(0,255,255,0.3);
+  border-radius: 8px;
+  overflow: hidden;
+  table-layout: fixed;
+}
+
+.behavior-table th, .behavior-table td {
+  border: 1px solid rgba(0,255,255,0.2);
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.behavior-table th {
+  background: rgba(0,255,255,0.08);
+  color: #00ffff;
+  font-weight: 700;
+}
+
+.behavior-table tr:nth-child(even) {
+  background: rgba(255,255,255,0.03);
+}
+
+.behavior-table tr:hover {
+  background: rgba(0,255,255,0.1);
+}
+
+/* ===== Highlighted Summary Box ===== */
+.analysis-summary-box {
+  margin-top: 16px;
+  background: rgba(0, 255, 255, 0.08);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.25);
+}
+
+.analysis-summary-box h4 {
+  color: #00ffff;
+  margin-bottom: 6px;
+}
+
+.analysis-summary-box p {
+  margin: 0;
+  line-height: 1.5;
+  color: #cceeff;
+}
+
+/* ===== Category Badges ===== */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-right: 8px;
+  color: #0a0f2c;
+}
+
+.badge-phish { background: var(--danger); }
+.badge-suspicious { background: var(--warning); }
+.badge-safe { background: var(--safe); }
+
+footer {
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+  opacity: 0.8;
+}
+/* Styling for the main header text (PhishBuster) */
+.header h1 {
+    /* Use a larger font size for impact */
+    font-size: 3.5rem; 
+    /* Slightly lighter weight for a modern look */
+    font-weight: 300; 
+    /* Enhance the blue glow/color */
+    color: #4dc4ff; /* A slightly brighter, electrifying blue */
+    /* Add a subtle text shadow to mimic the glow from the image */
+    text-shadow: 0 0 15px rgba(77, 196, 255, 0.6), 0 0 5px rgba(77, 196, 255, 0.4);
+    /* Increase margin below to create separation from the subtitle */
+    margin-bottom: 5px; 
+}
+
+/* Styling for the subtitle text */
+.header .lead {
+    /* Slightly increase the font size of the subtitle */
+    font-size: 1.1rem; 
+    /* Lighter, subtle color */
+    color: #a4cff2; 
+    /* Increase vertical margin for separation */
+    margin-top: 5px; 
+    margin-bottom: 40px; /* Pushes the entire header section down, filling space */
+}
+
+/* Ensure the header icon inherits the glow/color */
+.header h1 > span {
+    color: #4dc4ff;
+}
